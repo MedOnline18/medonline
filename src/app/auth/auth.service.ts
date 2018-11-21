@@ -11,7 +11,7 @@ export class AuthService {
   ) { }
 
   login(data) {
-    this.http.post('http://medonline.michal-kos.pl/backend/public/api/loginUser', data)
+    this.http.post('http://medonline.michal-kos.pl/backend/public/api/userLogin', data)
       .subscribe(res => console.log(res));
   }
 
