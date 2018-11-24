@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBulider: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -23,7 +25,11 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    this.authService.login(this.loginForm.value);
+    this.authService.login(this.loginForm.value)
+      .subscribe(token => {
+        localStorage.setItem('token', token);
+        this.router.navigate(['/']);
+      });
   }
 
 }
