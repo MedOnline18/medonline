@@ -14,5 +14,9 @@ export class AuthService {
     return this.http.post('http://medonline.michal-kos.pl/backend/public/api/userLogin', data)
       .pipe(map((respons: any) => respons.success.token));
   }
+  register(data) {
+      return this.http.post('http://medonline.michal-kos.pl/backend/public/api/userRegister', data)
+      .pipe(map((respons: any) => respons.success.token));
+  }
 
 }
