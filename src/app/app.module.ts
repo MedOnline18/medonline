@@ -23,6 +23,9 @@ import { SidenavComponent } from './navigation/sidenav/sidenav.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PatientsListComponent } from './patients/patients-list/patients-list.component';
 
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +51,8 @@ import { PatientsListComponent } from './patients/patients-list/patients-list.co
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatExpansionModule
+    MatExpansionModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
