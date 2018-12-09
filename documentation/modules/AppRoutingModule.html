@@ -70,8 +70,17 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { Routes, RouterModule } from &#x27;@angular/router&#x27;;
+import { DashboardComponent } from &#x27;./dashboard/dashboard.component&#x27;;
+import { LoginComponent } from &#x27;./auth/login/login.component&#x27;;
+import { RegisterComponent } from &#x27;./patients/register/register.component&#x27;;
+import { PatientsListComponent } from &#x27;./patients/patients-list/patients-list.component&#x27;;
 
-const routes: Routes &#x3D; [];
+const routes: Routes &#x3D; [
+  { path: &#x27;&#x27;, component: DashboardComponent},
+  { path: &#x27;login&#x27;, component: LoginComponent },
+  { path: &#x27;register&#x27;, component: RegisterComponent },
+  { path: &#x27;patients&#x27;, component: PatientsListComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

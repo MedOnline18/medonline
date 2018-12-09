@@ -1,3 +1,81 @@
-<p>
-  register works!
-</p>
+<mat-card>
+  <form [formGroup]="registerForm">
+    <div class="form-field__wrapper">
+      <mat-form-field>
+        <input matInput formControlName="name" placeholder="Name">
+        <mat-error>
+          <span *ngIf="registerForm.get('name').hasError('name')">
+            Please enter a valid name
+          </span>
+          <span *ngIf="registerForm.get('name').hasError('required')">
+            Please fill out this field
+          </span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-field__wrapper">
+      <mat-form-field>
+        <input matInput formControlName="email" placeholder="Email">
+        <mat-error>
+          <span *ngIf="registerForm.get('email').hasError('email')">
+            Please enter a valid email address
+          </span>
+          <span *ngIf="registerForm.get('email').hasError('required')">
+            Please fill out this field
+          </span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-field__wrapper">
+      <mat-form-field>
+        <input matInput type="password" formControlName="password" placeholder="Password">
+        <mat-hint align="end">{{ registerForm.get('password').value.length }} / 4</mat-hint>
+        <mat-error>
+          <span *ngIf="registerForm.get('password').hasError('required')">
+            Please fill out this field
+          </span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-field__wrapper">
+      <mat-form-field>
+        <input matInput type="password" formControlName="c_password" placeholder="Confirm Password">
+        <mat-hint align="end">{{ registerForm.get('c_password').value.length }} / 4</mat-hint>
+        <mat-error>
+          <span *ngIf="registerForm.get('c_password').hasError('required')">
+            Please fill out this field
+          </span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-field__wrapper">
+      <mat-form-field>
+        <input matInput formControlName="user_role" placeholder="User role">
+        <mat-error>
+          <span *ngIf="registerForm.get('user_role').hasError('user_role')">
+            Please enter a role
+          </span>
+          <span *ngIf="registerForm.get('user_role').hasError('required')">
+            Please fill out this field
+          </span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-field__wrapper">
+      <mat-form-field>
+        <input matInput formControlName="telephone" placeholder="Telephone">
+        <mat-error>
+          <span *ngIf="registerForm.get('telephone').hasError('telephone')">
+            Please enter a valid email address
+          </span>
+          <span *ngIf="registerForm.get('telephone').hasError('required')">
+            Please fill out this field
+          </span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+  <div class="button__wrapper">
+    <button (click)="onRegister()" [disabled]="registerForm.invalid" mat-raised-button color="accent">Register</button>
+  </div>
+</mat-card>

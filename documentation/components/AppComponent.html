@@ -209,14 +209,17 @@ export class AppComponent {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;!--The content below is only a placeholder and can be replaced.--&gt;
-&lt;div style&#x3D;&quot;text-align:center&quot;&gt;
-  &lt;h1&gt;
-    Welcome to {{ title }}!
-  &lt;/h1&gt;
-  &lt;img width&#x3D;&quot;300&quot; alt&#x3D;&quot;Angular Logo&quot; src&#x3D;&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg&#x3D;&#x3D;&quot;&gt;
-&lt;/div&gt;
-
+        <pre class="line-numbers"><code class="language-html">&lt;app-header (sidenavToggle)&#x3D;&quot;sidenav.toggle()&quot;&gt;&lt;/app-header&gt;
+&lt;mat-sidenav-container&gt;
+  &lt;mat-sidenav #sidenav role&#x3D;&quot;navigation&quot;&gt;
+    &lt;app-sidenav (closeSidenav)&#x3D;&quot;sidenav.close()&quot;&gt;&lt;/app-sidenav&gt;
+  &lt;/mat-sidenav&gt;
+  &lt;mat-sidenav-content&gt;
+     &lt;main&gt;
+        &lt;router-outlet&gt;&lt;/router-outlet&gt;
+     &lt;/main&gt;
+  &lt;/mat-sidenav-content&gt;
+&lt;/mat-sidenav-container&gt;
 </code></pre>
     </div>
 
@@ -224,7 +227,26 @@ export class AppComponent {
                 <p class="comment">
                     <code>./app.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
+                <pre class="line-numbers"><code class="language-scss">mat-sidenav-container,
+mat-sidenav-content,
+mat-sidenav {
+   height: 100%;
+}
+
+mat-sidenav-content {
+  background-color: #eee;
+}
+
+mat-sidenav {
+   width: 300px;
+}
+
+main {
+  margin-top: 1rem;
+  width: 85%;
+  margin: 1rem auto;
+}
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -252,8 +274,8 @@ export class AppComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!--The content below is only a placeholder and can be replaced.--><div style="text-align:center">  <h1>    Welcome to {{ title }}!  </h1>  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'SidenavComponent', 'selector': 'app-sidenav'}];
+        var COMPONENT_TEMPLATE = '<div><app-header (sidenavToggle)="sidenav.toggle()"></app-header><mat-sidenav-container>  <mat-sidenav #sidenav role="navigation">    <app-sidenav (closeSidenav)="sidenav.close()"></app-sidenav>  </mat-sidenav>  <mat-sidenav-content>     <main>        <router-outlet></router-outlet>     </main>  </mat-sidenav-content></mat-sidenav-container></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PatientsListComponent', 'selector': 'app-patients-list'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'SidenavComponent', 'selector': 'app-sidenav'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AppComponent'};
 </script>

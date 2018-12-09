@@ -32,7 +32,7 @@
     {
       "name": "patients",
       "urls": [
-        "http://medonline.michal-kos.pl/backend/public/api/userDetails"
+        "http://medonline.michal-kos.pl/backend/public/api/usersDetails"
       ],
       "cacheConfig": {
         "maxSize": 5,

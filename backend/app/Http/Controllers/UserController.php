@@ -38,6 +38,8 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email',
+            'user_role' => 'required',
+            'telephone' => 'required',
             'password' => 'required',
             'c_password' => 'required|same:password',
         ]);
@@ -55,9 +57,31 @@ class UserController extends Controller
     }
 
 
-    public function userDetails()
+    public function usersDetails()
     {
         $users = User::get();
         return response()->json(['success' => $users], 200);
     }
+
+    public function userDetails($id)
+    {
+        $user = User::where('id', $id)->get();
+        return response()->json(['success' => $user], 200);
+    }
+
+    public function userDelete(Request $request)
+    {
+        User::where('id', $request->user_id)->delete();
+        return response()->json(['success' => "Delete user $request->user_id"], 200);
+    }
+
+    public function userUpdate(Request $request)
+    {
+        User::where('id', $request->id)
+            ->update(['name' => $request->name,'email' => $request->email,'user_role' => $request->user_role,'telephone' => $request->telephone]);
+        return response()->json(['success' => "Update user $request->id"], 200);
+    }
+
+
+
 }

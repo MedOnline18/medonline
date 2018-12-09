@@ -202,7 +202,7 @@ export class PatientsService {
 
   getUserDetails() {
     const token &#x3D; localStorage.getItem(&#x27;token&#x27;);
-    return this.http.get(&#x27;http://medonline.michal-kos.pl/backend/public/api/userDetails&#x27;,
+    return this.http.get(&#x27;http://medonline.michal-kos.pl/backend/public/api/usersDetails&#x27;,
     { headers: new HttpHeaders().set(&#x27;Authorization&#x27;, &#x60;Bearer ${token}&#x60;) })
       .pipe(map((response: any) &#x3D;&gt; response.success));
   }

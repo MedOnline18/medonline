@@ -133,11 +133,28 @@
                             <li>
                                 <a href="#ngOnInit">ngOnInit</a>
                             </li>
+                            <li>
+                                <a href="#onSidenavToggle">onSidenavToggle</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
 
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#sidenavToggle">sidenavToggle</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
 
@@ -156,7 +173,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/navigation/header/header.component.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/navigation/header/header.component.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -165,7 +182,28 @@
 </section>
 
 
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="sidenavToggle"></a>
+                        <code>sidenavToggle</code>
+                    </td>
+                    <td class="col-md-10">
+                        <em><code>$event</code> Type:</em>    <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
 
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/navigation/header/header.component.ts:9</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
 
 
     <section>
@@ -195,7 +233,45 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/navigation/header/header.component.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/navigation/header/header.component.ts:13</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onSidenavToggle"></a>
+                        <span class="name">
+                            <b>
+                            onSidenavToggle
+                            </b>
+                            <a href="#onSidenavToggle"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onSidenavToggle()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/navigation/header/header.component.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -218,7 +294,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Output, EventEmitter } from &#x27;@angular/core&#x27;;
 
 @Component({
   selector: &#x27;app-header&#x27;,
@@ -226,10 +302,15 @@
   styleUrls: [&#x27;./header.component.scss&#x27;]
 })
 export class HeaderComponent implements OnInit {
+  @Output() sidenavToggle &#x3D; new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSidenavToggle() {
+    this.sidenavToggle.emit();
   }
 
 }
@@ -237,9 +318,14 @@ export class HeaderComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;p&gt;
-  header works!
-&lt;/p&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;mat-toolbar color&#x3D;&quot;primary&quot;&gt;
+    &lt;div&gt;&lt;a routerLink&#x3D;&quot;/&quot;&gt;MedOnline&lt;/a&gt;&lt;/div&gt;
+    &lt;div&gt;
+       &lt;button (click)&#x3D;&quot;onSidenavToggle()&quot; mat-icon-button color&#x3D;&quot;primary&quot;&gt;
+          &lt;mat-icon&gt;menu&lt;/mat-icon&gt;
+       &lt;/button&gt;
+    &lt;/div&gt;
+ &lt;/mat-toolbar&gt;
 </code></pre>
     </div>
 
@@ -247,7 +333,27 @@ export class HeaderComponent implements OnInit {
                 <p class="comment">
                     <code>./header.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
+                <pre class="line-numbers"><code class="language-scss">mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  button {
+    background-color: #fff;
+    border: none;
+
+    &amp;:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -275,8 +381,8 @@ export class HeaderComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><p>  header works!</p></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'SidenavComponent', 'selector': 'app-sidenav'}];
+        var COMPONENT_TEMPLATE = '<div><mat-toolbar color="primary">    <div><a routerLink="/">MedOnline</a></div>    <div>       <button (click)="onSidenavToggle()" mat-icon-button color="primary">          <mat-icon>menu</mat-icon>       </button>    </div> </mat-toolbar></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PatientsListComponent', 'selector': 'app-patients-list'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'SidenavComponent', 'selector': 'app-sidenav'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'HeaderComponent'};
 </script>
