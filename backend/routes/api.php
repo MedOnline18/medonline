@@ -25,4 +25,10 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('roleDetails', 'RoleController@roleDetails');
     Route::post('userDelete', 'UserController@userDelete');
     Route::post('userUpdate', 'UserController@userUpdate');
+    Route::get('timetableDetails', 'TimetableController@timetableDetails');
+    Route::post('addTimetable', 'TimetableController@addTimetable');
+    Route::post('timetableDelete', 'TimetableController@timetableDelete');
+    Route::get('timetableDetail/{id}', 'TimetableController@timetableDetail');
+    Route::get('checkTimetable/{doctor_id}/{date}', 'TimetableController@checkTimetable');
+    Route::post('timetableUpdate', 'TimetableController@timetableUpdate');
 });
