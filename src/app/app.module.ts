@@ -14,17 +14,21 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSelectModule } from '@angular/material/select';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './patients/register/register.component';
+import { RegisterComponent } from './users/register/register.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavComponent } from './navigation/sidenav/sidenav.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { PatientsListComponent } from './patients/patients-list/patients-list.component';
+import { UsersListComponent } from './users/users-list/users-list.component';
 
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { AppointmentComponent } from './users/appointment/appointment.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,8 @@ import { environment } from '../environments/environment';
     HeaderComponent,
     SidenavComponent,
     DashboardComponent,
-    PatientsListComponent
+    UsersListComponent,
+    AppointmentComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +57,9 @@ import { environment } from '../environments/environment';
     MatInputModule,
     MatButtonModule,
     MatExpansionModule,
+    MatDatepickerModule,
+    MatSelectModule,
+    MatNativeDateModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],

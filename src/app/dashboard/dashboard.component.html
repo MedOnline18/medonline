@@ -1,3 +1,13 @@
-<p>
-  dashboard works!
-</p>
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let visit of visits">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ visit.date }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>{{ visit.user_id }}</p>
+    <div class="buttons">
+      <button mat-button color="warn" (click)="onCancel(visit.id)">Cancel</button>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

@@ -26,7 +26,7 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <div class="form-field__wrapper">
+    <div *ngIf="!isEdited" class="form-field__wrapper">
       <mat-form-field>
         <input matInput type="password" formControlName="password" placeholder="Password">
         <mat-hint align="end">{{ registerForm.get('password').value.length }} / 4</mat-hint>
@@ -37,7 +37,7 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <div class="form-field__wrapper">
+    <div *ngIf="!isEdited" class="form-field__wrapper">
       <mat-form-field>
         <input matInput type="password" formControlName="c_password" placeholder="Confirm Password">
         <mat-hint align="end">{{ registerForm.get('c_password').value.length }} / 4</mat-hint>
@@ -76,6 +76,6 @@
     </div>
   </form>
   <div class="button__wrapper">
-    <button (click)="onRegister()" [disabled]="registerForm.invalid" mat-raised-button color="accent">Register</button>
+    <button (click)="onConfirm()" [disabled]="registerForm.invalid" mat-raised-button color="accent">Confirm</button>
   </div>
 </mat-card>

@@ -1,0 +1,32 @@
+<mat-card *ngIf="!!visitForm">
+  <form [formGroup]="visitForm">
+    <div class="form-field__wrapper">
+      <mat-form-field>
+        <mat-select formControlName="patient" placeholder="Choose Patient">
+          <mat-option *ngFor="let patient of patients" [value]="patient.id">
+            {{ patient.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form-field__wrapper">
+      <mat-form-field>
+        <input matInput formControlName="date" [matDatepicker]="date" placeholder="Choose Date">
+        <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #date></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="form-field__wrapper">
+      <mat-form-field>
+        <mat-select formControlName="hour" placeholder="Choose Hour">
+          <mat-option *ngFor="let hour of hours" [value]="hour">
+            {{ hour }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
+  <div class="button__wrapper">
+    <button (click)="onConfirm()" [disabled]="visitForm.invalid" mat-raised-button color="accent">Confirm</button>
+  </div>
+</mat-card>
