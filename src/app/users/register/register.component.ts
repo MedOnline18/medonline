@@ -15,6 +15,10 @@ export class RegisterComponent implements OnInit {
   public registerForm: FormGroup;
   public isEdited: boolean;
   private userId;
+  public roles = [
+    {type: 'Doctor', value: 1},
+    {type: 'Patient', value: 2},
+  ];
 
   constructor(
       private formBulider: FormBuilder,

@@ -50,11 +50,12 @@
     </div>
     <div class="form-field__wrapper">
       <mat-form-field>
-        <input matInput formControlName="user_role" placeholder="User role">
+        <mat-select formControlName="user_role" placeholder="User role">
+          <mat-option *ngFor="let role of roles" [value]="role.value">
+            {{ role.type }}
+          </mat-option>
+        </mat-select>
         <mat-error>
-          <span *ngIf="registerForm.get('user_role').hasError('user_role')">
-            Please enter a role
-          </span>
           <span *ngIf="registerForm.get('user_role').hasError('required')">
             Please fill out this field
           </span>
