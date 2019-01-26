@@ -67,7 +67,7 @@
         <input matInput formControlName="telephone" placeholder="Telephone">
         <mat-error>
           <span *ngIf="registerForm.get('telephone').hasError('telephone')">
-            Please enter a valid email address
+            Please enter a valid phone number
           </span>
           <span *ngIf="registerForm.get('telephone').hasError('required')">
             Please fill out this field

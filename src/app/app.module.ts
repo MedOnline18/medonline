@@ -29,6 +29,7 @@ import { UsersListComponent } from './users/users-list/users-list.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AppointmentComponent } from './users/appointment/appointment.component';
+import { ContactComponent } from './users/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AppointmentComponent } from './users/appointment/appointment.component'
     SidenavComponent,
     DashboardComponent,
     UsersListComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
