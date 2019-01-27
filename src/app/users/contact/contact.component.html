@@ -1,0 +1,43 @@
+<mat-card>
+  <form [formGroup]="registerForm">
+    <div class="form-field__wrapper">
+      <mat-form-field>
+        <input matInput formControlName="name" placeholder="Name">
+        <mat-error>
+          <span *ngIf="registerForm.get('name').hasError('name')">
+            Please enter a valid name
+          </span>
+          <span *ngIf="registerForm.get('name').hasError('required')">
+            Please fill out this field
+          </span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-field__wrapper">
+      <mat-form-field>
+        <input matInput formControlName="email" placeholder="Email">
+        <mat-error>
+          <span *ngIf="registerForm.get('email').hasError('email')">
+            Please enter a valid email address
+          </span>
+          <span *ngIf="registerForm.get('email').hasError('required')">
+            Please fill out this field
+          </span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-field__wrapper">
+      <mat-form-field>
+        <textarea matInput formControlName="message" placeholder="Message" class="message"></textarea>
+        <mat-error>
+          <span *ngIf="registerForm.get('message').hasError('required')">
+            Please fill out this field
+          </span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+  <div class="button__wrapper">
+    <button (click)="onConfirm()" [disabled]="registerForm.invalid" mat-raised-button color="accent">Confirm</button>
+  </div>
+</mat-card>
