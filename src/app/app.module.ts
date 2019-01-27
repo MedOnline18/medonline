@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '../../node_modules/@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
@@ -30,6 +31,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AppointmentComponent } from './users/appointment/appointment.component';
 import { ContactComponent } from './users/contact/contact.component';
+import { FindComponent } from './find/find.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { ContactComponent } from './users/contact/contact.component';
     DashboardComponent,
     UsersListComponent,
     AppointmentComponent,
-    ContactComponent
+    ContactComponent,
+    FindComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ import { ContactComponent } from './users/contact/contact.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    LeafletModule.forRoot(),
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,

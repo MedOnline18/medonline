@@ -6,6 +6,7 @@ import { RegisterComponent } from './users/register/register.component';
 import { UsersListComponent } from './users/users-list/users-list.component';
 import { AppointmentComponent } from './users/appointment/appointment.component';
 import { ContactComponent } from './users/contact/contact.component';
+import {FindComponent} from './find/find.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'edit/:user_id', component: RegisterComponent },
   { path: 'users/:user_role', component: UsersListComponent },
   { path: 'visit', component: AppointmentComponent },
-  { path: 'contact', component: ContactComponent }
+  { path: 'contact', component: ContactComponent },
+  { path: 'find', component: FindComponent }
 ];
 
 @NgModule({
