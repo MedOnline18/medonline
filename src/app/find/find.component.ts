@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { latLng, tileLgitayer, marker } from 'leaflet';
+import { latLng, tileLayer, marker } from 'leaflet';
 
 @Component({
     selector: 'app-find',
