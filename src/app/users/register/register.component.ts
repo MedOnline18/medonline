@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
             password: ['', [ Validators.required, Validators.minLength(4) ]],
             c_password: ['', [ Validators.required, Validators.minLength(4) ]],
             user_role: ['', [ Validators.required]],
-            telephone: ['', [ Validators.required]],
+            telephone: ['', [ Validators.required, Validators.pattern('^[0-9]{9,}')]],
             name: ['', [ Validators.required]]
         });
       if (!!this.userId) {
@@ -57,8 +57,8 @@ export class RegisterComponent implements OnInit {
         const [data] = res;
         this.registerForm = this.formBulider.group({
           email: [data.email, [ Validators.required, Validators.email ]],
-          user_role: [data.user_role, [ Validators.required]],
-          telephone: [data.telephone, [ Validators.required]],
+          user_role: ['', [ Validators.required]],
+          telephone: [data.telephone, [ Validators.required, Validators.pattern('^[0-9]{9,}')]],
           name: [data.name, [ Validators.required]]
       });
       });

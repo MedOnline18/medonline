@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from '../users.service';
 import { UsersDetails } from '../users.interfaces';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-appointment',
@@ -11,21 +12,34 @@ import { Router } from '@angular/router';
 })
 export class AppointmentComponent implements OnInit {
   public visitForm: FormGroup;
-  public patients: UsersDetails[];
+  private user: UsersDetails;
+  public users: UsersDetails[];
   public hours: string[];
+  private dataToSend: any;
+  public info: string;
+  public minDate: Date;
 
   constructor(
     private formBulider: FormBuilder,
     private usersService: UsersService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.minDate = new Date();
     this.usersService.getUserDetails().subscribe(
       ((response: UsersDetails[]) => {
-        this.patients = response.filter((user: UsersDetails) => user.user_role === '2');
+        if (this.user.user_role === '1') {
+          this.users = response.filter((user: UsersDetails) => user.user_role === '2');
+          this.info = 'Choose Patient';
+        } else if (this.user.user_role === '2') {
+          this.users = response.filter((user: UsersDetails) => user.user_role === '1');
+          this.info = 'Choose Doctor';
+        }
         this.visitForm = this.formBulider.group({
-          patient: ['', [ Validators.required ]],
+          user: ['', [ Validators.required ]],
           date: ['', [ Validators.required]],
           hour: ['', [ Validators.required]],
         });
@@ -44,22 +58,43 @@ export class AppointmentComponent implements OnInit {
   onConfirm() {
     const data = { ...this.visitForm.value };
     const date = this.prepareDate(data);
-    const dataToSend = {
-      doctor_id: 10,
-      user_id: data.patient,
-      date: date
-    };
-    this.usersService.setAppointment(dataToSend).subscribe(
-      () => this.router.navigate(['/'])
-    );
+    if (this.user.user_role === '1') {
+      this.dataToSend = {
+        doctor_id: this.user.id,
+        user_id: data.user,
+        date: date
+      };
+    } else if (this.user.user_role === '2') {
+      this.dataToSend = {
+        doctor_id: data.user,
+        user_id: this.user.id,
+        date: date
+      };
+    }
+    this.usersService.checkAppointment(this.dataToSend.doctor_id, this.dataToSend.date)
+      .subscribe((res: any) => {
+        if (!res.success.status) {
+          this.usersService.setAppointment(this.dataToSend).subscribe(
+            () => this.router.navigate(['/'])
+          );
+        } else {
+          this.snackBar.open('This date is already taken', 'Ok', { duration: 2000 });
+        }
+      });
   }
 
   prepareDate(data): string {
     const dateValue = data.date;
     const year = dateValue.getFullYear();
-    const mounth = dateValue.getMonth() + 1;
-    const day = dateValue.getDate();
-    return `${year}-0${mounth}-${day} ${data.hour}:00`;
+    let mounth = dateValue.getMonth() + 1;
+    if (Number(mounth) < 10) {
+      mounth = `0${mounth}`;
+    }
+    let day = dateValue.getDate();
+    if (Number(day) < 10) {
+      day = `0${day}`;
+    }
+    return `${year}-${mounth}-${day} ${data.hour}:00`;
   }
 
 }

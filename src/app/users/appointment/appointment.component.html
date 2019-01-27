@@ -2,16 +2,16 @@
   <form [formGroup]="visitForm">
     <div class="form-field__wrapper">
       <mat-form-field>
-        <mat-select formControlName="patient" placeholder="Choose Patient">
-          <mat-option *ngFor="let patient of patients" [value]="patient.id">
-            {{ patient.name }}
+        <mat-select formControlName="user" placeholder="{{ info }}">
+          <mat-option *ngFor="let user of users" [value]="user.id">
+            {{ user.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
     <div class="form-field__wrapper">
       <mat-form-field>
-        <input matInput formControlName="date" [matDatepicker]="date" placeholder="Choose Date">
+        <input matInput formControlName="date" [matDatepicker]="date" [min]="minDate" placeholder="Choose Date">
         <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
         <mat-datepicker touchUi #date></mat-datepicker>
       </mat-form-field>

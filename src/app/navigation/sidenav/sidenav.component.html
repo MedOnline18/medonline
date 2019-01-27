@@ -2,16 +2,16 @@
     <a mat-list-item routerLink="/" (click)="onCloseSidenav()">
        <span class="nav-caption">Profile</span>
     </a>
-    <a mat-list-item routerLink="/register" (click)="onCloseSidenav()">
+    <a *ngIf="user.user_role !== '2'" mat-list-item routerLink="/register" (click)="onCloseSidenav()">
        <span class="nav-caption">Register</span>
     </a>
     <a mat-list-item routerLink="/visit" (click)="onCloseSidenav()">
        <span class="nav-caption">Set an appointment</span>
     </a>
-    <a mat-list-item [routerLink]="['/users', '2']" (click)="onCloseSidenav()">
+    <a *ngIf="user.user_role !== '2'" mat-list-item [routerLink]="['/users', '2']" (click)="onCloseSidenav()">
        <span class="nav-caption">Patients</span>
     </a>
-    <a mat-list-item [routerLink]="['/users', '1']" (click)="onCloseSidenav()">
+    <a *ngIf="user.user_role === '3'" mat-list-item [routerLink]="['/users', '1']" (click)="onCloseSidenav()">
        <span class="nav-caption">Doctors</span>
     </a>
     <a mat-list-item (click)="onlogout()">

@@ -13,7 +13,7 @@ export class DashboardService {
   ) { }
 
   getVisits() {
-    return this.http.get(`http://medonline.michal-kos.pl/backend/public/api/timetableDetail/10`,
+    return this.http.get(`http://medonline.michal-kos.pl/backend/public/api/timetableDetails`,
     { headers: new HttpHeaders().set('Authorization', `Bearer ${this.token}`) })
       .pipe(map((response: any) => response.success));
   }

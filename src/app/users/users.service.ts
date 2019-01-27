@@ -32,6 +32,11 @@ export class UsersService {
     { headers: new HttpHeaders().set('Authorization', `Bearer ${this.token}`) });
   }
 
+  checkAppointment(id, date) {
+    return this.http.get(`http://medonline.michal-kos.pl/backend/public/api/checkTimetable/${id}/${date}`,
+    { headers: new HttpHeaders().set('Authorization', `Bearer ${this.token}`) });
+  }
+
   setAppointment(params) {
     return this.http.post('http://medonline.michal-kos.pl/backend/public/api/addTimetable', params,
     { headers: new HttpHeaders().set('Authorization', `Bearer ${this.token}`) });

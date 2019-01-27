@@ -32,7 +32,8 @@
     {
       "name": "patients",
       "urls": [
-        "http://medonline.michal-kos.pl/backend/public/api/usersDetails"
+        "http://medonline.michal-kos.pl/backend/public/api/usersDetails",
+        "http://medonline.michal-kos.pl/backend/public/api/timetableDetails"
       ],
       "cacheConfig": {
         "maxSize": 5,

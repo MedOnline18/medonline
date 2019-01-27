@@ -5,7 +5,8 @@
         {{ visit.date }}
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <p>{{ visit.user_id }}</p>
+    <p *ngIf="user.user_role === '2'">{{ visit.doctor_id }}</p>
+    <p *ngIf="user.user_role === '1'">{{ visit.user_id }}</p>
     <div class="buttons">
       <button mat-button color="warn" (click)="onCancel(visit.id)">Cancel</button>
     </div>
